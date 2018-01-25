@@ -48,4 +48,59 @@
     sort/2: sort based on a function
         *Ex: Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
     uniq_by/2: remove duplicates
-    
+#Patterning Matching example
+    >greeting = "Hello"
+    "Hello"
+    >greet = fn
+      (^greeting, name) -> "Hi #{name}"
+      (greeting, name) -> "#{greeting}, #{name}"
+    end
+    >greet.("Hello", "Sean")
+    "Hi Sean"
+    >greet.("Mornin'", "Sean")
+    "Mornin', Sean"
+#IF
+    >if 1==1 do
+        "equal"
+    else
+        "not equal"
+    end
+#Unless
+    >unless 1!=1 do
+        "not equal"
+    else
+        "equal"
+    end
+    "not qual"
+#Case
+    >case {:ok, "Hello World"} do
+      {:ok, result} -> result
+      {:error} -> "Uh oh!"
+      _ -> "Catch all"
+    end
+    "Hello World"
+    #With guards
+    >case {1, 2, 3} do
+      {1, x, 3} when x > 0 ->
+        "Will match"
+      _ ->
+        "Won't match"
+    end
+    "Will match"
+#Cond - its like else if
+    >cond do
+      2 + 2 == 5 ->
+        "This will not be true"
+      2 * 2 == 3 ->
+        "Nor this"
+      1 + 1 == 2 ->
+        "But this will"
+      true -> "Catch all"
+    end
+    "But this will"
+#With
+    >user = %{first: "Sean", last: "Callan"}
+    >with {:ok, first} <- Map.fetch(user, :first),
+         {:ok, last} <- Map.fetch(user, :last),
+         do: last <> ", " <> first
+    "Callan, Sean"

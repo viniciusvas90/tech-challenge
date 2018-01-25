@@ -28,3 +28,24 @@
     access: map["hello"]
     sintax for only atom keys: map = %{foo: "bar", hello: "world"}
         *special access: map.foo
+    update: map = %{map | foo: "baz"}
+#Enum
+    All the collections but tuples, are enumerables
+    all?/2: true if all itens meet a condition
+        *Ex for a list: Enum.all?(["foo", "bar", "hello"], fn(s) -> String.length(s) == 3 end)
+    any?/2: true if at least one item meet a condition
+        *Ex for a map: Enum.any?(list, fn {key,val} -> String.length(val)>3 end)
+    chunk_every/2: chunk the collection int group with length of second argument
+    each/2: iterates without producing new values
+    map/2: apply a function to each item producing a new collection
+    min/1: finds the minimal value in the collection
+    min/2: a function produce a minimum value in case of collection be empty
+    max/1: returns the maximal value in the collection
+    max/2: a function produce a maximum value in case of collection be empty
+    reduce/3: reduce the colletion to a sigle value
+        *Ex: Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end) = 16
+    sort/1: sort the collection
+    sort/2: sort based on a function
+        *Ex: Enum.sort([%{:val => 4}, %{:val => 1}], fn(x, y) -> x[:val] > y[:val] end)
+    uniq_by/2: remove duplicates
+    
